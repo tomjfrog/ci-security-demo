@@ -28,12 +28,13 @@ jobs:
           set +e
           jf audit
 
-      - name: Build NPM Binaries
+      - name: Build Application Binary
         id: build-npm
         run: |
-          npm ci
+          docker build . -t juice-shop:1
 
       - name: JF Scan
         id: scan
         run: |
-          jf scan
+          set +e
+          jf docker-scan juice-shop:1
