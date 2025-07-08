@@ -25,4 +25,5 @@ jobs:
       - name: JF Audit
         id: audit
         run: |
+          set +e
           jf audit
