@@ -27,3 +27,13 @@ jobs:
         run: |
           set +e
           jf audit
+
+      - name: Build NPM Binaries
+        id: build-npm
+        run: |
+          npm ci
+
+      - name: JF Scan
+        id: scan
+        run: |
+          jf scan
