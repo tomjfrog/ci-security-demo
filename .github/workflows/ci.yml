@@ -1,3 +1,4 @@
+name: JFrog Security Scans
 on:
   workflow_dispatch:
 
