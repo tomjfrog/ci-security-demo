@@ -37,4 +37,4 @@ jobs:
         id: scan
         run: |
           set +e
-          jf docker-scan juice-shop:1
+          jf docker scan juice-shop:1
