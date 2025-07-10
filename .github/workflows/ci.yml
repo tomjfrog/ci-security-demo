@@ -31,6 +31,7 @@ jobs:
       - name: Build Application Binary
         id: build-npm
         run: |
+          npm install grunt-cli
           npm run package
 
       - name: JF Scan
