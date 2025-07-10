@@ -22,17 +22,24 @@ jobs:
         env:
           JF_URL: ${{ vars.JF_URL }}
 
+      - name: Build Application Binary
+        id: build-npm
+        run: |
+          npm install grunt-cli
+          npm install
+          npm run build:server
+          npm run package:ci
+
+      - name: Docker Build
+        id: docker-build
+        run: |
+          docker build -t juice-shop:${{ github.run_number }} .
+
       - name: JF Audit
         id: audit
         run: |
           set +e
           jf audit
-
-      - name: Build Application Binary
-        id: build-npm
-        run: |
-          npm install grunt-cli
-          npm run package
 
       - name: JF Scan
         id: scan
@@ -40,10 +47,7 @@ jobs:
           set +e
           jf scan dist/* --licenses --vuln
 
-      - name: Docker Build
-        id: docker-build
-        run: |
-          docker build -t juice-shop:${{ github.run_number }} .
+
 
       - name: JF Docker Scan
         id: docker-scan
