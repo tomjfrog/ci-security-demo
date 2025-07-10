@@ -31,7 +31,7 @@ jobs:
       - name: Build Application Binary
         id: build-npm
         run: |
-          npm package
+          npm run package
 
       - name: JF Scan
         id: scan
