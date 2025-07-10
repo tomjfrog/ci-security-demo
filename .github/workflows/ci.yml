@@ -31,10 +31,21 @@ jobs:
       - name: Build Application Binary
         id: build-npm
         run: |
-          docker build . -t juice-shop:1
+          npm package
 
       - name: JF Scan
         id: scan
         run: |
           set +e
-          jf docker scan juice-shop:1
+          jf scan dist/* --licenses --vuln
+
+      - name: Docker Build
+        id: docker-build
+        run: |
+          docker build -t juice-shop:${{ github.run_number }} .
+
+      - name: JF Docker Scan
+        id: docker-scan
+        run: |
+          set +e
+          jf docker scan juice-shop:${{ github.run_number }} --licenses --vuln
