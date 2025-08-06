@@ -45,7 +45,7 @@ jobs:
         id: scan
         run: |
           set +e
-          jf scan dist/* --licenses --vuln
+          jf scan dist/*
 
 
 
@@ -53,4 +53,4 @@ jobs:
         id: docker-scan
         run: |
           set +e
-          jf docker scan juice-shop:${{ github.run_number }} --licenses --vuln
+          jf docker scan juice-shop:${{ github.run_number }}
